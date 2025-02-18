@@ -1,29 +1,38 @@
 import { Request, Response } from "express";
-import User from "./user.model";
+import { createUserToDB, getUsersFromDB } from "./user.service";
 
-const userController = (req: Request, res: Response) => {
-  const createUserToDB = async () => {
-    const user = new User({
-      id: "2",
-      role: "student",
-      password: "hasib",
-      name: {
-        firstName: "Md",
-        middlName: "Hasibul",
-        lastName: "Islam",
-      },
-      dateOfBirth: "20 Oct 2020",
-      gender: "male",
-      email: "hasibul@gmail.com",
-      contactNo: "01781082065",
-      emmergencyNo: "01781082065",
-      presentAddress: "Dhaka",
-      permanentAddress: "Dhaka",
+const createUser = async (req: Request, res: Response) => {
+  try {
+    const data = req.body;
+    // console.log(data);
+    const user = await createUserToDB(data);
+    res.status(200).json({
+      status: "success",
+      data: user,
     });
-    await user.save();
-  };
-  createUserToDB();
-  //   res.send({ status: 200, message: "Server is running" });
+  } catch (error) {
+    res.status(500).json({
+      status: "field",
+      message: "user not found",
+      error,
+    });
+  }
 };
 
-export { userController };
+const getUsers = async (req: Request, res: Response) => {
+  try {
+    const user = await getUsersFromDB();
+    res.status(200).json({
+      status: "success",
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "field",
+      message: "user not found",
+      error,
+    });
+  }
+};
+
+export { createUser, getUsers };

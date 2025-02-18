@@ -20,7 +20,7 @@ const userSchema = new Schema<IUser>({
       type: String,
       required: true,
     },
-    middlName: {
+    middleName: {
       type: String,
     },
     lastName: {
@@ -44,7 +44,7 @@ const userSchema = new Schema<IUser>({
     required: true,
     unique: true,
   },
-  emmergencyNo: {
+  emergencyNo: {
     type: String,
     required: true,
   },

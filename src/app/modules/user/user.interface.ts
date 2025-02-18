@@ -4,14 +4,14 @@ interface IUser {
   password: string;
   name: {
     firstName: string;
-    middlName: string;
+    middlName?: string;
     lastName: string;
   };
   dateOfBirth?: string;
   gender: "male" | "female";
   email?: string;
   contactNo: string;
-  emmergencyNo: string;
+  emergencyNo: string;
   presentAddress: string;
   permanentAddress: string;
 }

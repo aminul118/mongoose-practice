@@ -1,5 +1,6 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
 import cors from "cors";
+import userRoute from "./app/modules/user/user.route";
 const app: Application = express();
 
 /**
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
  *  !    Routes
  * ----------------------------
  */
+app.use("/api/v1/user", userRoute);
 
 /**
  * ---------------------------
@@ -30,7 +32,5 @@ app.use(express.urlencoded({ extended: true }));
  *  !    Root Route
  * ----------------------------
  */
-
-
 
 export default app;
