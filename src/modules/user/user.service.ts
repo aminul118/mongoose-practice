@@ -4,7 +4,6 @@ import User from "./user.model";
 // Create user
 const createUserToDB = async (payload: IUser): Promise<IUser> => {
   const user = await new User(payload);
-  // console.log("USER", user);
   await user.save();
   return user;
 };
@@ -18,7 +17,10 @@ const getUsersFromDB = async (): Promise<IUser[]> => {
 // Get a user
 const getUserByIdFromDb = async (payload: string) => {
   // console.log(payload);
-  const user = await User.findOne({ id: payload });
+  const filter = {
+    id: payload,
+  };
+  const user = await User.findOne(filter);
   return user;
 };
 

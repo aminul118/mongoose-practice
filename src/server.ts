@@ -7,10 +7,10 @@ const serverStart = async () => {
   try {
     await dbConnect();
     app.listen(port, () => {
-      console.log(`Example app listening on port ${port}`);
+      console.log(`🔰 Server is running on${port}`);
     });
   } catch (error) {
-    console.log(`DB connection error ${error}`);
+    console.log(`⚠️ DB connection error ${error}`);
   }
 };
 
